@@ -16,6 +16,8 @@ LINE = (
 def main() -> None:
     assert 1 <= len(LINE) <= 200, f"line is {len(LINE)} characters"
     assert LINE.strip() == LINE
+    # The bounty wants one line: reject any embedded line break outright.
+    assert "\n" not in LINE and "\r" not in LINE
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(LINE)
